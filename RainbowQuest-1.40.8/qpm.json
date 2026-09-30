@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.schema.json",
+  "version": "0.4.0",
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "Rainbow Quest",
+    "id": "RainbowQuest",
+    "version": "0.2.0",
+    "url": null,
+    "additionalData": {
+      "overrideSoName": "libRainbowQuest.so",
+      "cmake": true
+    }
+  },
+  "workspace": {
+    "scripts": {},
+    "qmodIncludeDirs": ["./build", "./extern/libs"],
+    "qmodIncludeFiles": [],
+    "qmodOutput": "RainbowQuest.qmod"
+  },
+  "dependencies": [
+    { "id": "beatsaber-hook", "versionRange": "^6.4.2", "additionalData": {} },
+    { "id": "bs-cordl", "versionRange": "^4008.0.0", "additionalData": {} },
+    { "id": "scotland2", "versionRange": "*", "additionalData": { "includeQmod": false, "private": true } },
+    { "id": "paper2_scotland2", "versionRange": "*", "additionalData": {} },
+    { "id": "config-utils", "versionRange": "*", "additionalData": {} },
+    { "id": "bsml", "versionRange": "*", "additionalData": {} }
+  ]
+}

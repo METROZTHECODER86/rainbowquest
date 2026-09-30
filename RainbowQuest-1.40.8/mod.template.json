@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/mod.schema.json",
+  "_QPVersion": "0.1.1",
+  "name": "Rainbow Quest",
+  "id": "${mod_id}",
+  "modloader": "Scotland2",
+  "author": "Unifox (ported to 1.40.8)",
+  "version": "${version}",
+  "packageId": "com.beatgames.beatsaber",
+  "packageVersion": "1.40.8_7379",
+  "description": "Makes blocks, sabers, lights and obstacles rainbow :D. Original by Unifox.",
+  "coverImage": "cover.png",
+  "dependencies": [],
+  "modFiles": [],
+  "lateModFiles": ["${binary}"],
+  "libraryFiles": [],
+  "fileCopies": [],
+  "copyExtensions": []
+}
