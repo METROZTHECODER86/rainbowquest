@@ -1,0 +1,65 @@
+name: Build qmod
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install qpm
+        run: cargo install --git https://github.com/QuestPackageManager/QPM.CLI --bin qpm
+
+      - name: Set up Android NDK
+        run: |
+          qpm ndk download 27
+          qpm ndk pin 27
+
+      - name: Restore dependencies
+        run: |
+          qpm restore
+          qpm generate
+
+      - name: Configure
+        run: |
+          cmake -G Ninja \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-28 \
+            -B build
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Debug build output
+        run: |
+          find build -name "*.so"
+
+      - name: Package qmod
+        run: |
+          qpm qmod zip -i build/libRainbowQuest.so cover.png
+
+      - name: Debug qmod output
+        run: |
+          find . -name "*.qmod"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RainbowQuest-qmod
+          path: "*.qmod"
+          if-no-files-found: error
