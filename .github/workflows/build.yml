@@ -21,7 +21,9 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install qpm
-  run: cargo install --locked --git https://github.com/QuestPackageManager/QPM.CLI --bin qpm
+  run: cargo install qpm
+
+  
       
 
       - name: Set up Android NDK 27
